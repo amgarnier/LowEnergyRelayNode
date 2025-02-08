@@ -16,10 +16,8 @@ proxied_device = ProxiedDevice(
 
 ble_scanner, success = ble_advertiser_scanner(
     total_time_before_success_ms=300_000,
-    number_of_relays=2,
+    number_of_relays=1,
     block_size_ms=30,
     probability=0.97,
     proxied_device=proxied_device,
 ).scan_window()
-
-print(f"This test has had a total of {success} succesfull reads ")

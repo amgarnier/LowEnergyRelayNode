@@ -125,10 +125,10 @@ class ble_advertiser_scanner:
         """
         try:
             self.advertiser_bearer()
+            success = +1
+            print(f"# of successes {success}")
             # if no error from the advertiser bearer send to network observer to verify
             self.network_observer()  # send to network observer and verify
-            global success  # this just allows us to increment the succesful number of received messages and allows duplicates to be read as a success
-            success = +1
             self.network_bearer()  # convert message to new adv message
             # self.advertise()  # advertise message un-comment to utilize function
             return True

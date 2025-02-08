@@ -12,7 +12,7 @@ print(networkPDU)
 # Initialize MeshAdvertisingBearer
 MAB = MeshAdvertisingBearer(
     total_time_before_success_ms=300_000,
-    number_of_relays=2,
+    number_of_relays=1,
     block_size_ms=30,
     probability=0.97,
     network_pdu=networkPDU,

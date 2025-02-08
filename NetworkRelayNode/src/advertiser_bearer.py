@@ -110,7 +110,7 @@ if __name__ == "__main__":
     # "0x1e202a68eca487516765b5e5bfdacbaf6cb7fb6bff871f035444ce83a670df"
     try:
         ab = AdvertiserBearer(
-            adv_message=pb_advertiser_bearer._contents,
+            adv_message=bytearray(pb_advertiser_bearer._contents),
             proxied_device=proxied_device,
         ).verify()
     except ValueError as e:

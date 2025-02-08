@@ -1,45 +1,31 @@
-import math
+import numpy as np
 
-# Configuration
-TOTAL_TIME_MS = 300_000  # 5 minutes
-SEND_BLOCK_SIZE = 5  # 5 ms per send block
-RECEIVE_BLOCK_SIZE = 30  # 30 ms per receive block
-TOTAL_SEND_SLOTS = TOTAL_TIME_MS // SEND_BLOCK_SIZE  # 60,000 slots
-TOTAL_LISTEN_SLOTS = TOTAL_TIME_MS // RECEIVE_BLOCK_SIZE  # 10,000 slots
-TARGET_PROBABILITY = 0.97  # Desired probability
+# Constants
+total_time_ms = 300000
+sender_time_ms = 3
+sender_blocks = np.arange(1, 2001)  # 1 to 2000
+receiver_time_ms = 30
+prob_success_total = 0.98
+simulations = 1000
 
+# Calculate probability of detection in one receiver block
+prob_detection_one_rec = (sender_blocks * sender_time_ms) / total_time_ms
 
-def probability_of_success(S, L, N_s):
-    """Computes the probability using binomial approximation."""
-    return 1 - (1 - L / N_s) ** S
+# Calculate the number of receiver blocks for a given success probability
+receiver_blocks = np.log(1 - prob_success_total) / np.log(1 - prob_detection_one_rec)
 
+# Assuming we want the send and receive times to be the same
+prob = 1 - (1 - prob_detection_one_rec) ** (
+    sender_blocks * (receiver_time_ms / sender_time_ms)
+)
 
-def find_minimum_blocks():
-    """Finds the minimum send & listen blocks using direct probability calculation."""
-    for send_blocks in range(1, TOTAL_SEND_SLOTS):  # Step in 10s for efficiency
-        listen_blocks = (
-            send_blocks * SEND_BLOCK_SIZE
-        ) // RECEIVE_BLOCK_SIZE  # Keep active times equal
-
-        if listen_blocks > TOTAL_LISTEN_SLOTS or listen_blocks <= 0:
-            continue
-
-        prob = probability_of_success(send_blocks, listen_blocks, TOTAL_SEND_SLOTS)
-
-        if prob >= TARGET_PROBABILITY:
-            return send_blocks, listen_blocks, prob  # Return first valid solution
-
-    return None  # No valid configuration found
+# Find when the probability first exceeds 0.98
+i = 0
+for element in prob:
+    if element > prob_success_total:
+        print(f"Index when probability exceeds 0.98: {i}")
+        break
+    i += 1
 
 
-# Run optimization
-result = find_minimum_blocks()
-
-# Print results
-if result:
-    send_blocks, listen_blocks, probability = result
-    print(f"Minimum Send Blocks: {send_blocks}")
-    print(f"Minimum Listen Blocks: {listen_blocks}")
-    print(f"Success Probability: {probability:.4f}")
-else:
-    print("No valid configuration found!")
+# assume 173 listen messages and 1730 send blocks
