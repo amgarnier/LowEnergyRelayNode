@@ -83,14 +83,21 @@ class ble_advertiser_scanner:
                 print("adv_data=", end=" ")
                 print(bytes(adv_data).hex(), end=" ")
                 print("a single scan result")
-
                 # # verify the advertisment bearer
                 self.network_advertiser()
+        elif event == 6:
+            print("done")
+            pin.toggle()
 
     def scan_full_time(self):
-        while True:
-            self._ble.gap_scan(0)
-            utime.sleep_ms(50)  # want to sleep between relay to not overload device
+        print("run")
+        pin.toggle()
+        self._ble.gap_scan(0)
+        utime.sleep_ms(300_000)
+        # while True:
+
+        #     utime.sleep_ms(50)  # want to sleep between relay to not overload device
+        #     pin.toggle()
 
     def scan_window(self):
         for time in self._send_blocks:
