@@ -9,6 +9,7 @@ from src.proxied_device import ProxiedDevice
 import ubluetooth
 from classes.prob_model import prob_model
 from machine import Pin
+import machine
 import utime
 from src.advertiser_bearer import AdvertiserBearer
 from src.network_observer import MessageCache, NetworkObserver
@@ -84,30 +85,40 @@ class ble_advertiser_scanner:
                 print(bytes(adv_data).hex(), end=" ")
                 print("a single scan result")
                 # # verify the advertisment bearer
+                data = bytearray.fromhex(
+                    "68e476b5579c980d0d730f94d7f3509df987bb417eb7c05f"
+                )
+                self._ble.gap_advertise(interval_us=30_000, adv_data=data)
+                print("gap sent message")
                 self.network_advertiser()
+                # send test advertisment
+
         elif event == 6:
-            print("done")
+            # print("done")
             pin.toggle()
 
     def scan_full_time(self):
         print("run")
-        pin.toggle()
-        self._ble.gap_scan(0)
-        utime.sleep_ms(300_000)
+        while True:
+            pin.toggle()
+            self._ble.gap_scan(30)
+            utime.sleep_ms(35)
+
         # while True:
 
         #     utime.sleep_ms(50)  # want to sleep between relay to not overload device
-        #     pin.toggle()
+        #     pin.toggle()s
 
     def scan_window(self):
         for time in self._send_blocks:
             try:
+                print(".")
                 pin.toggle()
                 self._ble.gap_scan(
                     self._block_size,
                 )
                 pin.toggle()
-                print(".")
+                machine.lightsleep(time)
                 utime.sleep_ms(time)
             except KeyboardInterrupt:
                 break

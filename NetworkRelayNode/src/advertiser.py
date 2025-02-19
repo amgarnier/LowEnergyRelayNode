@@ -86,6 +86,7 @@ class MeshAdvertisingBearer:
         ad_pdu_bytes = bytes(AD_PDU_HEX)  # Convert hex to bytes (skip '0x')
         block_size = self._block_size
         self.mab.gap_advertise(interval_us=block_size, adv_data=ad_pdu_bytes)
+        print("message sent")
 
     # assume we know keys and network keys already
     # step 1 send PBADV message at set interval depending on window size and total time the lasat user wants to receive the message and number of relays
