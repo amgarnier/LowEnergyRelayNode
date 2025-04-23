@@ -20,7 +20,7 @@ pin = Pin("LED", Pin.OUT)
 
 success = 0
 
-# this is the advertiser scanner device. It takes in the probability model. The proxied device and details are brought into the scanner as it is the keys that are used to decrypt and verify the received message.
+# this is the advertiser scanner device. It takes in the probability model. The proxied device and details are brought into the scanner as it is the keys that are used to decrypt and verify the received messages.
 
 # scanned message - > Advertismentbearer(verify ad_type and mesh type)-> NetworkObserver(verify nid, mic, decrypt, cache, deobfusicate, verify if local )-> NetworkBearer(create the message) -> advertise
 

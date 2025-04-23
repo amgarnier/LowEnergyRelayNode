@@ -60,7 +60,7 @@ class MeshAdvertisingBearer:
         print(f"MAC Address: {self.mab.config('mac')}")
         self.mab.config(gap_name="MESH")  # type: ignore
         print(f"Gap Name: {self.mab.config('gap_name')}")
-        self._send_message = network_pdu.create_network_from_message()
+        self._send_message = bytearray(network_pdu.create_network_from_message())
 
         # build probability model
         self._send_blocks = prob_model(

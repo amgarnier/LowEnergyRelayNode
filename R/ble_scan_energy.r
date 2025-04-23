@@ -15,11 +15,11 @@ ble_scan_df<-subset(ble_scan_df, ble_scan_df$time >= 0)
 auc <- AUC(ble_scan_df$time, ble_scan_df$a, method = "trapezoid")
 mean_amp <- auc / 3.2755 # integral/total time
 
-#take the mean amps and multiply by volts to get power
-#P = I*V
-power_average_full <- mean_amp * 5 *1000 #mwatts
-print("average power full time")
-print(power_average_full) #watts average over the 131 seconds
+# take the mean amps and multiply by volts to get power
+# P = I * V
+power_average_full <- mean_amp * 5 * 1000 #mwatts
+#watts average over the 131 seconds
+print(paste("average power full time: ", power_average_full))
 
 #windowed data
 ble_scan_full <- read.csv("ble_scan_windowed.csv")
@@ -39,6 +39,5 @@ mean_amp <- auc / 131 # integral/total time
 #take the mean amps and multiply by volts to get power
 #P = I * V
 power_average_windowed <- mean_amp * 5 * 1000 #mwatts
-print(paste("average power ", power_average_windowed))
-print(power_average_windowed) #watts average over the 262 seconds
+print(paste("average power windowed ", power_average_windowed))
 print(paste("Power saved", ((power_average_full-power_average_windowed)/power_average_full) * 100, "%"))

@@ -85,11 +85,6 @@ class ble_advertiser_scanner:
                 print(bytes(adv_data).hex(), end=" ")
                 print("a single scan result")
                 # # verify the advertisment bearer
-                data = bytearray.fromhex(
-                    "68e476b5579c980d0d730f94d7f3509df987bb417eb7c05f"
-                )
-                self._ble.gap_advertise(interval_us=30_000, adv_data=data)
-                print("gap sent message")
                 self.network_advertiser()
                 # send test advertisment
 
@@ -148,6 +143,13 @@ class ble_advertiser_scanner:
             # if no error from the advertiser bearer send to network observer to verify
             self.network_observer()  # send to network observer and verify
             self.network_bearer()  # convert message to new adv message
+            # uncomment below section to run a test advertisment message
+            # data = bytearray.fromhex(
+            #     "68e476b5579c980d0d730f94d7f3509df987bb417eb7c05f"
+            # )
+            # #if succesfull we send message in an advertisment this is just a test we can use self.advertise with a real message.
+            # self._ble.gap_advertise(interval_us=30_000, adv_data=data)
+            # print("gap sent message")
             # self.advertise()  # advertise message un-comment to utilize function
             return True
         except Exception as e:
@@ -234,7 +236,6 @@ class ble_advertiser_scanner:
             block_size_ms=30,
             probability=0.97,
             network_pdu=self._network_pdu,
-            send_message=self._adv_message,
         ).start()
 
 
@@ -247,7 +248,7 @@ if __name__ == "__main__":
         iv_index=bytearray.fromhex("12345678"),
         nonce=bytearray.fromhex("008b0148352345000012345678"),
         network_key=bytearray.fromhex("7dd7364cd842ad18c17c2b820c84c3d6"),
-    ).create_network_keys()
+    )
 
     # test for scan window
 
