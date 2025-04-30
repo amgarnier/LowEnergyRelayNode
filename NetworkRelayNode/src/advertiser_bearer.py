@@ -3,6 +3,7 @@ from classes.network_pdu import PbAdvertisingBearer, AdvBearerMessagePdu, Networ
 import src.proxied_device as pd
 
 
+##advertiser bearer class
 class AdvertiserBearer:
     """
     A class to represent an Advertiser Bearer.

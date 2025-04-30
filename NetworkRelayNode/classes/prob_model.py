@@ -2,9 +2,10 @@ import math
 import random
 
 
+## This is the probabilty model for when to send the data
 class prob_model:
     """
-    This is the probability model which is used to determine the send or receive blocks for the device a
+    This is the probability model which is used to determine the send or receive blocks for the device given the listen windows
     """
 
     def __init__(

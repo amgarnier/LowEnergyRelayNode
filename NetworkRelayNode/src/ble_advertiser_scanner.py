@@ -3,7 +3,7 @@
 # 1.b scan for message
 # -> input should be window size in ms and total time to receive message in minutes
 # <-output should be message received
-# count number of messages receieved and print at end of time period
+# count number of messages receieved and print at end of time periods
 
 from src.proxied_device import ProxiedDevice
 import ubluetooth
@@ -130,7 +130,7 @@ class ble_advertiser_scanner:
             global success  # this just allows us to increment the succesful number of received messages and allows duplicates to be read as a success
             success = +1
             self.network_bearer()  # convert message to new adv message
-            # self.advertise()  # advertise message un-comment to utilize function
+            # self.advertise()  # advertise message un-comment to utilize function right now we just receive the message and not send it
             return True
         except Exception as e:
             print("This has failed *************")

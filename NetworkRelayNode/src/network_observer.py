@@ -77,11 +77,12 @@ class NetworkObserver:
             message_cache.append(advertiser_bearer=self._advertiser_bearer)
 
     def observe(self, message_cache: MessageCache):
-        self.verify_nid()
-        self.verify_mic_decrypt()
-        self.network_caches(message_cache=message_cache)
-        self.de_obfuscate()
-        self.verify_local()
+        # this was removed so that the message is just returned
+        # self.verify_nid() // verify nid
+        self.verify_mic_decrypt()  # mock decryption of data
+        # self.network_caches(message_cache=message_cache)
+        # self.de_obfuscate()
+        # self.verify_local()
         return self._network_pdu
 
     def return_network_pdu(self):

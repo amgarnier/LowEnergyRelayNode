@@ -2,7 +2,7 @@ from encryption.K2FunctionMaster import k2
 
 
 #
-# assumption: nonce and i_v index given in a hearbeat message which is not part of this test
+# assumption: nonce and i_v index given in a heartbeat message which is not part of this test
 class ProxiedDevice:
     def __init__(
         self,

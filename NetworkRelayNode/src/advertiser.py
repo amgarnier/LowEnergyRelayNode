@@ -4,7 +4,7 @@ import utime
 from machine import Pin
 from classes.prob_model import prob_model
 
-# This relay node sends a message
+## This relay node sends a message
 
 pin = Pin("LED", Pin.OUT)
 # This code is for the mesh advertisment it takes in the advertisment details that want to be sent and probability model data. It takes in the Network PDU which is a class that is responsible for creating a network pdu. As the BLE is advertising a network PDU. The network pdu is encomposed in a transport PDU which the network pdu class handles.
