@@ -2,9 +2,9 @@
 import math
 
 
-def ProbabilitySuccess(listens: int, sends: int, blocks: int):
+def ProbabilitySuccess(listens: int, sends: int, blocks: float):
     prob = listens / blocks
-    sends = float(sends)
+    sends = sends
     prob = 1 - math.pow(1 - prob, sends)
     return prob
 
@@ -32,6 +32,6 @@ def MinNumberOfSendReceiveSlots(
 
 
 # total number of slots and simulations
-minSendReceive = MinNumberOfSendReceiveSlots(300_000, 30, 3, 0.97)
+minSendReceive = MinNumberOfSendReceiveSlots(100_000, 2, 30, 0.97)
 
 print(f"Minimum number of send and receive slots: {minSendReceive}")

@@ -56,12 +56,6 @@ lines(result_vary_sends, col = 'red', lwd = 5)
 
 result_both <- success_binomial_prob(nListen,300, nSend)
 plot(result_both)
-plot(result_vary_listens,result_vary_sends)
-text(result_vary_listens[1:20], result_vary_sends[1:20], adj = c(3,1))
 
-#now we create the 3d heatmap to find the best values
 
-ggplot(dataFrame, aes(x=send, y=listen, fill=probability)) +
-  geom_tile() +
-  scale_fill_gradient(low="white", high="darkgreen", name="Your Legend")
 
