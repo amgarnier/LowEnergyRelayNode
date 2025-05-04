@@ -5,7 +5,7 @@ from binascii import hexlify
 from math import ceil
 
 
-# Created by another user add site here
+# Created by https://github.com/KianBahasadri/micropython-aes-cmac
 class CMAC:
 
     def _xor(self, a, b):

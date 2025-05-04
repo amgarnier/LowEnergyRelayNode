@@ -1,6 +1,6 @@
 import encryption.mpyaes as mpyaes
 
-# to test install via all commands on bottoom
+# to test install via all commands on bottom
 
 
 def decrypt_data_ecb(key, ciphertext):

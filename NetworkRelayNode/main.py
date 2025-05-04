@@ -14,18 +14,18 @@ proxied_device = ProxiedDevice(
 
 # test for scan window
 
-# ble_scanner, success = ble_advertiser_scanner(
-#     total_time_before_success_ms=300_000,
-#     number_of_relays=1,
-#     block_size_ms=30,
-#     probability=0.97,
-#     proxied_device=proxied_device,
-# ).scan_window()
-
-ble_advertiser_scanner(
+ble_scanner, success = ble_advertiser_scanner(
     total_time_before_success_ms=300_000,
     number_of_relays=1,
     block_size_ms=30,
     probability=0.97,
     proxied_device=proxied_device,
-).scan_full_time()
+).scan_window()
+
+# ble_advertiser_scanner(
+#     total_time_before_success_ms=300_000,
+#     number_of_relays=1,
+#     block_size_ms=30,
+#     probability=0.97,
+#     proxied_device=proxied_device,
+# ).scan_full_time()
