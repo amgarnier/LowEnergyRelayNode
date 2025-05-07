@@ -96,8 +96,7 @@ class ble_advertiser_scanner:
         print("run")
         while True:
             pin.toggle()
-            self._ble.gap_scan(30)
-            utime.sleep_ms(35)
+            self._ble.gap_scan(50000)
 
         # while True:
 

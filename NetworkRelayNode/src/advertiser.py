@@ -123,8 +123,7 @@ class MeshAdvertisingBearer:
         print(self._send_message.hex())
         # print(self._network_pdu._network_pdu.hex())
         while True:
-            self.mab.gap_advertise(30000, self._send_message)
-            utime.sleep_ms(300)
+            self.mab.gap_advertise(3000, self._send_message)
             print(".")
             pin.toggle()
         return self

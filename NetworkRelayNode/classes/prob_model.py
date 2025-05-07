@@ -113,3 +113,15 @@ class prob_model:
         self._send_blocks = sorted(self._send_blocks)
         self.find_delay_values()
         return self._send_blocks
+
+
+if __name__ == "__main__":
+    model = prob_model(
+        total_time_before_success_ms=300_000,
+        number_of_relays=1,
+        block_size_ms=30,
+        probability=0.97,
+    )
+    model.create_send_blocks()
+
+    print(f"probability of success {model._send_blocks} ")
